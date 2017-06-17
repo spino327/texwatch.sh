@@ -28,7 +28,7 @@ if [ "$#" -gt "2" ]; then
 fi
 
 function compile {
-    echo $TEX -synctex=1 -interaction=nonstopmode $MAIN #> /dev/null
+    $TEX -synctex=1 -interaction=nonstopmode $MAIN > /dev/null
     echo "$MAIN recompiled!"
 }
 
