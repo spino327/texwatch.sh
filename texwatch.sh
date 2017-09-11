@@ -18,7 +18,6 @@ fi
 
 THIS=$0
 CMD=$1
-FOLDER=$PWD
 TEX=pdflatex
 if [ "$#" -gt "1" ]; then
     MAIN=$2
@@ -33,12 +32,12 @@ function compile {
 }
 
 function listening_changes {
-    fswatch -o `ls "$FOLDER"/*.tex` | xargs -n 1 -I {} $THIS compile $MAIN $TEX
+    fswatch -o `ls *.tex` | xargs -n 1 -I {} $THIS compile $MAIN $TEX
 }
 
 function start {
     echo "starting texwatch..."
-    echo "Listening folder: '$FOLDER' and target: '$MAIN'"
+    echo "Listening folder: '$PWD' and target: '$MAIN'"
     listening_changes&
     spid=$!
     echo background pid=$spid
