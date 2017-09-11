@@ -5,7 +5,7 @@
 
 function USAGE() {
     echo "texwatch.sh start|stop|compile <main.tex> <tex_cmd>."
-    echo "  To start: texwatch.sh start file.tex folder."
+    echo "  To start: texwatch.sh start file.tex <tex_cmd>."
     echo "  To stop: texwatch.sh stop"
     echo "  main.tex: main tex file."
     echo "  tex_cmd: tex command to execute, e.g. pdflatex, xelatex,..."
@@ -33,7 +33,7 @@ function compile {
 }
 
 function listening_changes {
-    fswatch -o `ls $FOLDER/*.tex` | xargs -n 1 -I {} $THIS compile $MAIN $TEX
+    fswatch -o `ls "$FOLDER"/*.tex` | xargs -n 1 -I {} $THIS compile $MAIN $TEX
 }
 
 function start {
